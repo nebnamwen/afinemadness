@@ -57,7 +57,7 @@ then
     echo $SCORE > $GOAL
     mv $GOAL players/$USER/scored_goals
 
-    if [ -n $RIVAL ] && [ "$(ls player/$RIVAL/hand | wc -l)" -gt $SCORE ]
+    if [ -n "$RIVAL" ] && [ "$(ls player/$RIVAL/hand | wc -l)" -gt $SCORE ]
     then
 	echo "Player $RIVAL is provoked and must respond once you finish your turn!"
 	echo $GOAL > players/$RIVAL/provoked_goal

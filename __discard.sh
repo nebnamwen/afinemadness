@@ -34,9 +34,12 @@ then
     rm players/$USER/provoked_goal
 fi
 
-if [ "$(cat players/$USER/willpower)" -eq 0 ]
+if [ ! -e players/$USER/scored_goal.flag ]
 then
-    echo "Your willpower is exhausted."
-else
-    echo "You have $(cat players/$USER/willpower) willpower left."
+    if [ "$(cat players/$USER/willpower)" -eq 0 ]
+    then
+	echo "Your willpower is exhausted."
+    else
+	echo "You have $(cat players/$USER/willpower) willpower left."
+    fi
 fi

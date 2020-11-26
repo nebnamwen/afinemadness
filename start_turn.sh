@@ -12,8 +12,13 @@ for PLAYER in $(ls players | grep -xv $USER; echo $USER)
 do
     for GOAL in $(ls players/$PLAYER/scored_goals)
     do
-	echo $PLAYER: $GOAL = $(cat players/$PLAYER/scored_goals/$GOAL)
+	echo "$PLAYER: $GOAL = $(cat players/$PLAYER/scored_goals/$GOAL)"
     done
+
+    if [ "$(ls players/$PLAYER/scored_goals | wc -l)" -gt 0 ]
+    then
+	echo "$PLAYER total score: $(cat players/$PLAYER/scored_goals/* | awk '{total += $1} END {print total}')"
+    fi
 done
 echo "my hidden goal:" $(ls players/$USER/hidden_goal)
 echo
