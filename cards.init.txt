@@ -173,6 +173,7 @@ bat
 bug
 spider
 snake
+worm
 wasp
 fish
 squid
