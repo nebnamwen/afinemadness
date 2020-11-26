@@ -1,0 +1,1 @@
+ls players/$USER/hand
