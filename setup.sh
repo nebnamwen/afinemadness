@@ -1,10 +1,10 @@
 mkdir -p card_deck
 rm card_deck/* 2>/dev/null
-cat cards.master.txt | grep -v \# | xargs -I CARD touch card_deck/CARD
+cat cards.init.txt | grep -v \# | xargs -I CARD touch card_deck/CARD
 
 mkdir -p goal_deck
 rm goal_deck/* 2>/dev/null
-cat goals.master.txt | grep -v \# | xargs -I GOAL touch goal_deck/GOAL
+cat goals.init.txt | grep -v \# | xargs -I GOAL touch goal_deck/GOAL
 
 mkdir -p table_goals
 rm table_goals/* 2>/dev/null
