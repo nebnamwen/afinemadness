@@ -1,3 +1,7 @@
+# usage: sh setup.sh $PLAYER1 $PLAYER2 ...
+#
+# set up the initial game state from scratch
+
 mkdir -p card_deck
 rm card_deck/* 2>/dev/null
 cat cards.init.txt | grep -v \# | xargs -I CARD touch card_deck/CARD

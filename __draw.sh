@@ -1,3 +1,5 @@
+# usage: used internally by draw_deck.sh and draw_stash.sh
+
 if [ ! -e players/$USER/draw_phase.flag ]
 then
     echo Your draw phase is not active.

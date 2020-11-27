@@ -1,3 +1,5 @@
+# usage: used internally by discard_deck.sh and discard_stash.sh
+
 for CARD in "$@"
 do
     if [ -e players/$USER/hand/$CARD ]

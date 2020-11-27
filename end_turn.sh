@@ -1,3 +1,5 @@
+# usage: sh end_turn.sh
+
 if [ "$(cat players/$USER/willpower)" -eq 0 ] && [ ! -e players/$USER/scored_goal.flag ] && [ "$(ls players/$USER/hand | wc -l)" -gt 0 ]
 then
     echo "You are out of willpower and must score a goal before ending your turn."

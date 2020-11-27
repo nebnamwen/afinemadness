@@ -1,3 +1,7 @@
+# usage: sh change_goal.sh N
+# spend N willpower to draw N goals from the stack
+# choose, from among them and your current hidden goal, one to keep
+
 if [ $1 -gt "$(cat players/$USER/willpower)" ]
 then
     echo "You don't have enough willpower."

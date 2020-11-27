@@ -1,3 +1,5 @@
+# usage: sh start_turn.sh
+
 touch players/$USER/my_turn.flag
 touch players/$USER/draw_phase.flag
 touch players/$USER/free_discard.flag
@@ -27,5 +29,6 @@ echo "Cards in hand:"
 ls players/$USER/hand
 echo
 
+echo "Cards in stash: $(ls players/$USER/stash | wc -l | sed 's/ //g')"
 echo "Willpower: $(cat players/$USER/willpower)"
 echo

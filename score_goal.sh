@@ -1,3 +1,10 @@
+# usage: sh score_goal.sh $GOAL $CARD1 $CARD2 ...
+#
+# score a goal using cards from your hand
+#
+# you should list the cards that were successfully used,
+# and omit the cards that were dropped.
+
 unset GOAL
 unset RIVAL
 if [ -e table_goals/$1 ]
