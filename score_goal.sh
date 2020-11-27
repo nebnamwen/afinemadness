@@ -60,7 +60,7 @@ echo "Scored $SCORED cards, dropped $DROPPED, for a total score of $SCORE"
 
 if [ $SCORE -gt $PREV ]
 then
-    echo "You acquired the goal $1 for $SCORE points"
+    echo "You scored the goal $1 for $SCORE points"
     echo $SCORE > $GOAL
     mv $GOAL players/$USER/scored_goals
 
