@@ -60,10 +60,10 @@ then
     if [ -n "$RIVAL" ] && [ "$(ls player/$RIVAL/hand | wc -l)" -gt $SCORE ]
     then
 	echo "Player $RIVAL is provoked and must respond once you finish your turn!"
-	echo $GOAL > players/$RIVAL/provoked_goal
+	echo players/$USER/scored_goals/$1 > players/$RIVAL/provoked_goal
     fi
 
-    if [ "$(ls players/$USER/hidden_goal | wc -l)" -eq 0 ]
+    if [ -n "$(echo $GOAL | grep players/$USER/hidden_goal)" ] 
     then
 	if [ "$(ls goal_deck | wc -l)" -gt 0 ]
 	then
@@ -74,6 +74,19 @@ then
 	    echo "There are no goals left to replace your hidden goal."
 	fi
     fi
+
+    if [ -n "$(echo $GOAL | grep table_goals)" ]
+    then
+	if [ "$(ls goal_deck | wc -l)" -gt 0 ]
+	then
+	    NEWGOAL="$(ls goal_deck | sort -R | head -n 1)"
+	    mv goal_deck/$NEWGOAL table_goals
+	    echo "You scored a table goal and drew $NEWGOAL to replace it."
+	else
+	    echo "There are no goals left to replace a table goal."
+	fi
+    fi	
+
 else
     echo "You didn't beat the previous score of $PREV"
 fi
