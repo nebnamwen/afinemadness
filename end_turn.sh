@@ -24,8 +24,8 @@ then
     echo "You rested and gained 2 willpower for a total of $(cat players/$USER/willpower)."
 fi
 
-NEXTPLAYER=$((ls players; ls players) | grep -A1 $USER | head -n 1)
-if [ -n "$(ls players/*/provoked_goal)" ]
+NEXTPLAYER=$((ls players; ls players) | grep -A1 $USER | grep -xv $USER | head -n 1)
+if [ -n "$(ls players/*/provoked_goal 2>/dev/null)" ]
 then
     PROVOKED="$(ls players/*/provoked_goal | sed -e 's#players/##' -e 's#/provoked_goal##')"
     echo "You provoked $PROVOKED and they must respond, then it's $NEXTPLAYER's turn."
