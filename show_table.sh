@@ -8,9 +8,15 @@ do
     echo "Willpower: $(cat players/$PLAYER/willpower)"
     echo
 
-    if [ $PLAYER = $USER ]
+    if [ $PLAYER = $USER ] || [ -e players/$PLAYER/reveal_hand.flag ]
     then
 	ls -m players/$PLAYER/hand
+	echo
+    fi
+
+    if [ $PLAYER = $USER ] && [ -e players/$PLAYER/reveal_hand.flag ]
+    then
+	echo "Your hand is revealed to the table."
 	echo
     fi
 
