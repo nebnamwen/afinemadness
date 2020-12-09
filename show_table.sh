@@ -2,8 +2,7 @@
 
 for PLAYER in $(ls players)
 do
-    echo $'\e'\#3"$PLAYER"
-    echo $'\e'\#4"$PLAYER"
+    echo "==== $PLAYER ===="
     echo -n "Hand: $(ls players/$PLAYER/hand | wc -l | sed 's/ //g') cards; "
     echo -n "Stash: $(ls players/$PLAYER/stash | wc -l | sed 's/ //g') cards; "
     echo "Willpower: $(cat players/$PLAYER/willpower)"
