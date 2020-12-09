@@ -12,6 +12,7 @@ do
     if [ $PLAYER = $USER ]
     then
 	ls players/$PLAYER/hand
+	echo
     fi
 
     if [ "$(ls players/$PLAYER/scored_goals | wc -l)" -gt 0 ]
@@ -28,9 +29,6 @@ do
 done
 echo
 
-echo "Cards in stash: $(ls players/$USER/stash | wc -l | sed 's/ //g')"
-echo "Willpower: $(cat players/$USER/willpower)"
-echo
-
-echo "Goals on table: $(ls table_goals)"
+echo "Goals on table:" `ls table_goals`
 echo "My hidden goal: $(ls players/$USER/hidden_goal)"
+echo
