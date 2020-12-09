@@ -30,4 +30,4 @@ do
 
 done
 
-chmod -R +rwX card_deck goal_deck table_goals players
+chmod -R a+rwX card_deck goal_deck table_goals players
