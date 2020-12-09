@@ -15,7 +15,7 @@ rm table_goals/* 2>/dev/null
 ls goal_deck | sort -R | head -n 2 | xargs -I GOAL mv goal_deck/GOAL table_goals
 
 mkdir -p players
-rm -r players/* 2>/dev/null
+rm -rf players/* 2>/dev/null
 for PLAYER in "$@"
 do
     mkdir players/$PLAYER
