@@ -10,7 +10,7 @@ do
 
     if [ $PLAYER = $USER ]
     then
-	ls players/$PLAYER/hand
+	ls -m players/$PLAYER/hand
 	echo
     fi
 
@@ -28,6 +28,6 @@ do
 done
 echo
 
-echo "Goals on table:" `ls table_goals`
+echo "Goals on table: $(ls -m table_goals)"
 echo "My hidden goal: $(ls players/$USER/hidden_goal)"
 echo
