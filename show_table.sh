@@ -43,3 +43,7 @@ echo
 echo "Goals on table: $(ls -m table_goals)"
 echo "My hidden goal: $(ls players/$USER/hidden_goal)"
 echo
+
+echo "-----------------------------"
+tail -n 6 messages.txt
+echo

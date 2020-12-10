@@ -27,7 +27,8 @@ do
 
     ls card_deck | sort -R | head -n 3 | xargs -I CARD mv card_deck/CARD players/$PLAYER/hand
     ls goal_deck | sort -R | head -n 1 | xargs -I GOAL mv goal_deck/GOAL players/$PLAYER/hidden_goal
-
 done
 
-chmod -R a+rwX card_deck goal_deck table_goals players
+echo "$USER started the game with $@" > messages.txt
+
+chmod -R a+rwX card_deck goal_deck table_goals players messages.txt

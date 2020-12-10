@@ -1,32 +1,48 @@
 # usage: used internally by discard_deck.sh and discard_stash.sh
 
+COST=0
+
 for CARD in "$@"
 do
     if [ -e players/$USER/hand/$CARD ]
     then
-	if [ ! -e players/$USER/scored_goal.flag ]
-	then
-	    if [ -e players/$USER/free_discard.flag ]
-	    then
-		rm players/$USER/free_discard.flag
-	    else
-		if [ "$(cat players/$USER/willpower)" -gt 0 ]
-		then
-		    WILL=$(expr $(cat players/$USER/willpower) - 1)
-		    echo $WILL > players/$USER/willpower
-		else
-		    echo "Your willpower is exhausted."
-		    exit 1
-		fi
-	    fi
-	fi
-
-	mv players/$USER/hand/$CARD $1
+	COST=$(expr $COST + 1)
     else
 	if [ $CARD != $1 ]
-	then
+	    then
 	    echo "$CARD is not in your hand."
-	fi
+	    exit 1
+        fi
+    fi
+done
+
+if [ "$COST" -eq 0 ]
+then
+    echo "You didn't name any cards to discard."
+    exit 1
+fi
+
+if [ -e players/$USER/free_discard.flag ]
+then
+    COST=$(expr $COST - 1)
+fi
+
+if [ ! -e players/$USER/scored_goal.flag ]
+then
+    if [ $COST -gt $(cat players/$USER/willpower) ]
+    then
+	echo "You don't have enough willpower to discard that many cards."
+	exit 1
+    fi
+    WILL=$(expr $(cat players/$USER/willpower) - $COST)
+    echo $WILL > players/$USER/willpower
+fi    
+
+for CARD in "$@"
+do
+    if [ -e players/$USER/hand/$CARD ]
+    then
+	mv players/$USER/hand/$CARD $1
     fi
 done
 
