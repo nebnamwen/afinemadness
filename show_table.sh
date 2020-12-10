@@ -5,7 +5,8 @@ do
     echo "==== $PLAYER ===="
     echo -n "Hand: $(ls players/$PLAYER/hand | wc -l | sed 's/ //g') cards; "
     echo -n "Stash: $(ls players/$PLAYER/stash | wc -l | sed 's/ //g') cards; "
-    echo "Willpower: $(cat players/$PLAYER/willpower)"
+    echo -n "Willpower: $(cat players/$PLAYER/willpower); "
+    echo "Score: $(cat players/$PLAYER/scored_goals/* | awk '{total += $1} END {print total}')"
 
     if [ -e players/$PLAYER/provoked_goal ]
     then
@@ -34,7 +35,6 @@ do
 	    echo "$GOAL = $(cat players/$PLAYER/scored_goals/$GOAL)"
 	done
 
-	echo "$PLAYER total score: $(cat players/$PLAYER/scored_goals/* | awk '{total += $1} END {print total}')"
 	echo
     fi
 done
