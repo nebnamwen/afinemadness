@@ -74,11 +74,25 @@ then
     then
 	if [ "$(ls goal_deck | wc -l)" -gt 0 ]
 	then
-	    NEWGOAL="$(ls goal_deck | sort -R | head -n 1)"
-	    mv goal_deck/$NEWGOAL players/$USER/hidden_goal
-	    echo "You scored your hidden goal and drew $NEWGOAL to replace it."
+	    for GOAL in $(ls goal_deck | sort -R | head -n 3)
+	    do
+		mv goal_deck/$GOAL players/$USER/hidden_goal
+	    done
+
+	    echo "You scored your hidden goal and drew to replace it:"
+	    ls -m players/$USER/hidden_goal
+	    KEEPER=__not_a_real_goal
+	    while [ ! -e players/$USER/hidden_goal/$KEEPER ]
+	    do
+		read -p "Which goal would you like to keep?: " KEEPER
+	    done
+
+	    for GOAL in $(ls players/$USER/hidden_goal | grep -xv $KEEPER)
+	    do
+		mv players/$USER/hidden_goal/$GOAL goal_deck
+	    done
 	else
-	    echo "There are no goals left to replace your hidden goal."
+	    echo "There are no goals left in the deck to replace your hidden goal."
 	fi
     fi
 
