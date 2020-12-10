@@ -6,13 +6,13 @@ then
     exit 1
 fi
 
-if [ $1 -gt 2 ] && [ "$(expr $1 + 1)" -gt "$(ls players/$USER/hand | wc -l)" ]
+if [ $1 -gt 3 ] && [ "$(expr $1 + 1)" -gt "$(ls players/$USER/hand | wc -l)" ]
 then
-    if [ "$(ls players/$USER/hand | wc -l)" -gt 2 ]
+    if [ "$(ls players/$USER/hand | wc -l)" -gt 3 ]
     then
 	echo Your draw limit is "$(expr $(ls players/$USER/hand | wc -l | sed 's/ //g') - 1)", one less than your hand size.
     else
-	echo Your draw limit is 2.
+	echo Your draw limit is 3.
     fi
     exit 1
 fi
