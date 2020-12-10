@@ -6,6 +6,12 @@ do
     echo -n "Hand: $(ls players/$PLAYER/hand | wc -l | sed 's/ //g') cards; "
     echo -n "Stash: $(ls players/$PLAYER/stash | wc -l | sed 's/ //g') cards; "
     echo "Willpower: $(cat players/$PLAYER/willpower)"
+
+    if [ -e players/$PLAYER/provoked_goal ]
+    then
+	echo "$PLAYER is provoked to reclaim  <(cat players/$PLAYER/provoked_goal | sed 's#.*/##')"
+    fi
+
     echo
 
     if [ $PLAYER = $USER ] || [ -e players/$PLAYER/reveal_hand.flag ]
