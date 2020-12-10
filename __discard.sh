@@ -49,6 +49,7 @@ done
 if [ -e players/$USER/provoked_goal ] && [ "$(ls players/$USER/hand | wc -l)" -le "$(cat $(cat players/$USER/provoked_goal))" ]
 then
     echo "You've calmed down enough to avoid responding to provocation."
+    echo "$USER calmed down enough to avoid responding to provocation." >> messages.txt
     rm players/$USER/provoked_goal
 fi
 

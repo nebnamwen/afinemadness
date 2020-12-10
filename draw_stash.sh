@@ -5,4 +5,4 @@
 # your draw limit is one less than your hand size,
 # but always at least 2.
 
-sh __draw.sh $1 players/$USER/stash
+sh __draw.sh $1 players/$USER/stash && echo "$USER drew $1 cards from their stash" >> messages.txt

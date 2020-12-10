@@ -7,4 +7,4 @@
 #
 # all other discards cost 1 willpower per card
 
-sh __discard.sh players/$USER/stash "$@"
+sh __discard.sh players/$USER/stash "$@" && echo "$USER discarded $# cards to their stash" >> messages.txt

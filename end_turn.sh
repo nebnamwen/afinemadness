@@ -17,6 +17,7 @@ then
     WILL=$(expr $(cat players/$USER/willpower) + 2)
     echo $WILL > players/$USER/willpower
     echo "You rested and gained 2 willpower for a total of $(cat players/$USER/willpower)."
+    echo "$USER rested and gained 2 willpower for a total of $(cat players/$USER/willpower)." >> messages.txt
 fi
 
 rm players/$USER/draw_phase.flag 2>/dev/null
@@ -29,6 +30,8 @@ if [ -n "$(ls players/*/provoked_goal 2>/dev/null)" ]
 then
     PROVOKED="$(ls players/*/provoked_goal | sed -e 's#players/##' -e 's#/provoked_goal##')"
     echo "You provoked $PROVOKED and they must respond, then it's $NEXTPLAYER's turn."
+    echo "$USER ended their turn, $PROVOKED is provoked, then it's $NEXTPLAYER's turn." >> messages.txt
 else
     echo "It's $NEXTPLAYER's turn next."
+    echo "$USER ended their turn, it's $NEXTPLAYER's turn next." >> messages.txt
 fi

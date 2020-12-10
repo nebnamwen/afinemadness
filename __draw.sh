@@ -27,7 +27,7 @@ rm players/$USER/draw_phase.flag
 
 for CARD in $(ls $2 | sort -R | head -n $1)
 do
-    echo $CARD
+    echo -n "$CARD "
     mv $2/$CARD players/$USER/hand
 done
 

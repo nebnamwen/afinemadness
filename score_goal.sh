@@ -44,6 +44,8 @@ then
     exit 1
 fi
 
+echo "$USER is scoring $@" >> messages.txt
+
 SCORED=0
 DROPPED=0
 for CARD in $(ls players/$USER/hand)
@@ -61,12 +63,14 @@ echo "Scored $SCORED cards, dropped $DROPPED, for a total score of $SCORE"
 if [ $SCORE -gt $PREV ]
 then
     echo "You scored the goal $1 for $SCORE points"
+    echo "$USER scored the goal $1 for $SCORE points." >> messages.txt
     echo $SCORE > $GOAL
     mv $GOAL players/$USER/scored_goals
 
     if [ -n "$RIVAL" ] && [ "$(ls player/$RIVAL/hand | wc -l)" -gt $SCORE ]
     then
 	echo "Player $RIVAL is provoked and must respond once you finish your turn!"
+	echo "$RIVAL is provoked!" >> messages.txt
 	echo players/$USER/scored_goals/$1 > players/$RIVAL/provoked_goal
     fi
 
@@ -110,6 +114,7 @@ then
 
 else
     echo "You didn't beat the previous score of $PREV"
+    echo "$USER tried to score $1 but their score of $SCORE didn't beat the previous score of $PREV." >> messages.txt
 fi
 
 echo "You'll need to discard your hand to continue."

@@ -7,4 +7,4 @@
 #
 # all other discards cost 1 willpower per card
 
-sh __discard.sh card_deck "$@"
+sh __discard.sh card_deck "$@" && echo "$USER discarded $# cards to the deck" >> messages.txt
