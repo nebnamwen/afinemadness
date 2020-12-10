@@ -23,7 +23,7 @@ do
     mkdir players/$PLAYER/stash
     mkdir players/$PLAYER/scored_goals
     mkdir players/$PLAYER/hidden_goal
-    echo 6 > players/$PLAYER/willpower
+    echo 4 > players/$PLAYER/willpower
 
     ls card_deck | sort -R | head -n 3 | xargs -I CARD mv card_deck/CARD players/$PLAYER/hand
     ls goal_deck | sort -R | head -n 1 | xargs -I GOAL mv goal_deck/GOAL players/$PLAYER/hidden_goal
