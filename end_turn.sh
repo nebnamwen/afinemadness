@@ -12,17 +12,17 @@ then
     exit 1
 fi
 
-rm players/$USER/draw_phase.flag 2>/dev/null
-rm players/$USER/free_discard.flag 2>/dev/null
-rm players/$USER/scored_goal.flag 2>/dev/null
-rm players/$USER/my_turn.flag 2>/dev/null
-
-if [ "$(ls players/$USER/hand | wc -l)" -eq 0 ]
+if [ "$(ls players/$USER/hand | wc -l)" -eq 0 ] && [ ! -e players/$USER/scored_goal.flag ]
 then
     WILL=$(expr $(cat players/$USER/willpower) + 2)
     echo $WILL > players/$USER/willpower
     echo "You rested and gained 2 willpower for a total of $(cat players/$USER/willpower)."
 fi
+
+rm players/$USER/draw_phase.flag 2>/dev/null
+rm players/$USER/free_discard.flag 2>/dev/null
+rm players/$USER/scored_goal.flag 2>/dev/null
+rm players/$USER/my_turn.flag 2>/dev/null
 
 NEXTPLAYER=$((ls players; ls players) | grep -A1 $USER | grep -xv $USER | head -n 1)
 if [ -n "$(ls players/*/provoked_goal 2>/dev/null)" ]
